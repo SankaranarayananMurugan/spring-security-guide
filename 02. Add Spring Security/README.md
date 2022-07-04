@@ -37,4 +37,6 @@ Similarly accessing the API in Postman with user and the same random password us
 
 ![Spring Security Login page - Postman](./assets/list_courses_postman_200.png)
 
-By default, Spring Security enables **Basic Authentication** for all resources in addition to creating an in-memory user. It chooses appropriate EntryPoint as well to respond when authentication fails. In this case, it responds with *401 Unauthorized* error status in Postman by choosing `org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint` . And it responds with *302 Found redirect* error status in the browser to redirect to login page by choosing `org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint`.
+By default, Spring Security enables **Basic Authentication** for all resources in addition to creating an in-memory user. It chooses appropriate EntryPoint as well to respond when authentication fails.
+
+In this case, it responds with *401 Unauthorized* error status in Postman by choosing `org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint` . And it responds with *302 Found redirect* error status in the browser to redirect to login page by choosing `org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint`.
