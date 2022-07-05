@@ -12,11 +12,12 @@ Fetch all the `AppUser` records from the database and map them with one of the `
 Here we map the *username* and *password* from `AppUser` with the same variables in `org.springframework.security.core.userdetails.User` using the Builder method. Let's keep the authorities with `Collections.EMPTY_SET` for now as it can't be null.
 
 ```  
-@Service public class DbUserDetailsService {    
-   @Autowired    
-   private AppUserRepository appUserRepository;    
+@Service
+public class DbUserDetailsService {    
+    @Autowired    
+    private AppUserRepository appUserRepository;    
     
-   public List<UserDetails> getAllUserDetails() {    
+    public List<UserDetails> getAllUserDetails() {    
         return appUserRepository.findAll()    
                 .stream()    
                 .map(appUser -> User.builder()    
@@ -26,7 +27,7 @@ Here we map the *username* and *password* from `AppUser` with the same variables
                         .build()    
                 )    
                 .collect(Collectors.toList());    
-   }  
+    }  
 }  
 ```  
 
