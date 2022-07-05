@@ -34,6 +34,6 @@ Now accessing the two Public APIs in Postman without *username* and *password* b
 
 ![List courses with no auth - Postman](./assets/list_courses_postman_no_auth.png)
 
-Because List Courses and Create Course endpoints are the same but with different HttpMethod, we have to  specify `HttpMethod.GET` in the antMatchers to permit only the List Courses API.
+As List Courses and Create Course endpoints are the same but with different HttpMethod, we have to  specify `HttpMethod.GET` in the antMatchers to permit only the List Courses API.
 
 The order in which the antMatchers are defined is important, with most restricted resources defined at the top followed by least restricted resources at the bottom.
