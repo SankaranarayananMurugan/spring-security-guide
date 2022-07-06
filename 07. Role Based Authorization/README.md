@@ -31,7 +31,7 @@ http.authorizeRequests(auth -> auth
 
 Similar to what we did in [Permit Public API](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/04.%20Permit%20Public%20APIs), we have to specify `HttpMethod` as `POST` for *Create Course* API, as it shares the same url with *List Courses* API
 
-Accessing the [List Students](http://localhost:8080/api/v1/users/students) API now using Gru (the Instructor user) will return us `403 Forbidden` error status. Though we have secured this API for Admin, Spring Security has no idea who Admin is, as we have provided only *username* and *password* for all the UserDetails.
+Accessing the [List Students](http://localhost:8080/api/v1/users/students) API now using Admin (Admin user) will return us `403 Forbidden` error status. Though we have secured this API for Admin, Spring Security has no idea who the Admin is, as we have only provided *username* and *password* for all the UserDetails.
 
 ![List Students API - 403 Forbidden - For Admin](./assets/admin_api_403.png)
 
@@ -61,7 +61,7 @@ private String[] getRoles(Set<AppRole> roles) {
 
 > `roles()` is an overloaded method, here we chose the one which accepts `String[]`.
 
-Restart the application and access the [List Students](http://localhost:8080/api/v1/users/students) API now using Gru (Instructor) to see the list of students as response, whereas `403 Forbidden` for Bob (Student).
+Restart the application and access the [List Students](http://localhost:8080/api/v1/users/students) API now using Admin (Admin user) to see the list of students as response, whereas `403 Forbidden` for Bob (Student).
 
 ![List Students API - 200 Forbidden - For Admin](./assets/admin_api_200_admin.png)
 
