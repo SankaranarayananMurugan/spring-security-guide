@@ -1,9 +1,11 @@
 
 # Permission Based Access - Remove Role-based Access
 
+## Coarse grained access control
+
 We know software requirements tends to change over a period of time. And this is applicable for non-functional requirements like Security as well. We gave coarse grained access control to a couple of APIs using Roles. Any change in the Security requirements in terms of securing the APIs will require us to modify the code by updating the `HttpSecurity` configuration.
 
-For example, it is valid for a Student to view the list of instructors and get the list of courses filtered with the selected instructor. In this scenario, we have to update `HttpSecurity` configuration as below:
+For example, it is valid for a Student to view the list of instructors and get the list of courses filtered by the selected instructor. In this scenario, we have to secure the List Instructors API for both Admin and Student users as below:
 
 ```
 http  
@@ -19,9 +21,11 @@ http
 	.httpBasic();
 ```
 
+## Fine grained access control
+
 Permission grants the ability to perform an action on a resource. So we defined permissions in the format `ACTION_RESOURCENAME` which enables us to create fine grained access control to each resources.
 
-Securing each API by defining its own permission and granting the appropriate permissions to each roles offers four key benefits:
+Securing each API by defining its own permission and then granting those permissions to the roles offer four key benefits:
 
 1. No more code modification, as granting permissions to roles is database driven.
 2. Bird's eye view of who can do what in a single place, which is also database.
@@ -46,7 +50,7 @@ http
 	.httpBasic();
 ```
 
-Now Spring Security doesn't need to know about the roles of any user to authorize any API request, all it needs to know are the Permissions or Authorities. So we can remove the role information from the `UserDetails`, and this got even more simplified where we no longer required to combine roles (by prefixing with **ROLE_**) and permissions. And we no longer need to care about the authorities override issues.
+With `hasAuthority()` Spring Security doesn't need to know about the roles of the user to authorize any API request. All it needs to know are only the Permissions or Authorities. So we can remove the role information from the `UserDetails` as given below: 
 
 ```
 appUserRepository.findAll()  
@@ -70,7 +74,9 @@ private String[] getPermissions(Set<AppRole> roles) {
 }
 ```
 
-Finally each users will have only their permissions as their authorities as mentioned in the below table, and each API access is controlled by its own permission.
+This got even more simplified where we no longer required to combine roles (by prefixing with **ROLE_**) and permissions. And we no longer need to care about the authorities override issues we highlighted in [Chapter 7](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/07.%20Role%20Based%20Authorization).
+
+As each API is secured against its own permission, and users will now only have the permissions corresponding to the APIs they can access as their authorities as mentioned in the below table.
 
 | User | Authorities |
 |--|--|
