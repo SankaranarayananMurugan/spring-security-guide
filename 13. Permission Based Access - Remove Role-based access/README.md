@@ -7,65 +7,66 @@ For example, it is valid for a Student to view the list of instructors and get t
 
 ```
 http  
-    .csrf().disable()  
-    .authorizeRequests(auth -> auth  
-            .antMatchers(GET, PUBLIC_API_LIST).permitAll()  
-            .antMatchers(API_LIST_STUDENTS).hasRole(ADMIN.name())  
-            .antMatchers(API_LIST_INSTRUCTORS).hasAnyRole(ADMIN.name(), STUDENT.name())  
-            .antMatchers(POST, API_CREATE_COURSES).hasRole(INSTRUCTOR.name())  
-            .antMatchers(API_PLAY_COURSE).hasAuthority(PLAY_COURSE.name())  
-            .anyRequest().authenticated()  
-    )  
-    .httpBasic();
+	.csrf().disable()  
+	.authorizeRequests(auth -> auth  
+	        .antMatchers(GET, PUBLIC_API_LIST).permitAll()  
+	        .antMatchers(API_LIST_STUDENTS).hasRole(ADMIN.name())  
+	        .antMatchers(API_LIST_INSTRUCTORS).hasAnyRole(ADMIN.name(), STUDENT.name())  
+	        .antMatchers(POST, API_CREATE_COURSES).hasRole(INSTRUCTOR.name())  
+	        .antMatchers(API_PLAY_COURSE).hasAuthority(PLAY_COURSE.name())  
+	        .anyRequest().authenticated()  
+	)  
+	.httpBasic();
 ```
 
 Permission grants the ability to perform an action on a resource. So we defined permissions in the format `ACTION_RESOURCENAME` which enables us to create fine grained access control to each resources.
 
-Securing each API by defining its own permission and granting the appropriate permissions to each roles offers three key benefits:
+Securing each API by defining its own permission and granting the appropriate permissions to each roles offers four key benefits:
 
-1. Fine grained access control to each resource.
-2. No more code modification, as granting permissions to roles are database driven.
-3. Bird's eye view of who can do what in a single place, which is also database.
+1. No more code modification, as granting permissions to roles is database driven.
+2. Bird's eye view of who can do what in a single place, which is also database.
+3. Fine grained access control to each API (and other resources).
+4. Same permission-based access model can be used by both API as well as user interface, as every user action in the UI corresponds to an API execution in the application.
 
 Let's change Role-based API access to Permission-based API access by changing the `HttpSecurity` configuration using `hasAuthority()` as below:
 
 ```
 http  
-    .csrf().disable()  
-    .authorizeRequests(auth -> auth  
-            .antMatchers(GET, PUBLIC_API_LIST).permitAll()  
-            .antMatchers(API_LIST_STUDENTS).hasAuthority(LIST_STUDENTS.name())  
-            .antMatchers(API_LIST_INSTRUCTORS).hasAuthority(LIST_INSTRUCTORS.name())
-            .antMatchers(API_VIEW_PROFILE).hasAuthority(VIEW_PROFILE.name())  
-            .antMatchers(POST, API_CREATE_COURSES).hasAuthority(CREATE_COURSE.name())
-            .antMatchers(PUT, API_UPDATE_COURSES).hasAuthority(UPDATE_COURSE.name())  
-            .antMatchers(API_PLAY_COURSE).hasAuthority(PLAY_COURSE.name())  
-            .anyRequest().authenticated()  
-    )  
-    .httpBasic();
+	.csrf().disable()  
+	.authorizeRequests(auth -> auth  
+	        .antMatchers(GET, PUBLIC_API_LIST).permitAll()  
+	        .antMatchers(API_LIST_STUDENTS).hasAuthority(LIST_STUDENTS.name())  
+	        .antMatchers(API_LIST_INSTRUCTORS).hasAuthority(LIST_INSTRUCTORS.name())
+	        .antMatchers(API_VIEW_PROFILE).hasAuthority(VIEW_PROFILE.name())  
+	        .antMatchers(POST, API_CREATE_COURSES).hasAuthority(CREATE_COURSE.name())
+	        .antMatchers(PUT, API_UPDATE_COURSES).hasAuthority(UPDATE_COURSE.name())  
+	        .antMatchers(API_PLAY_COURSE).hasAuthority(PLAY_COURSE.name())  
+	        .anyRequest().authenticated()  
+	)  
+	.httpBasic();
 ```
 
 Now Spring Security doesn't need to know about the roles of any user to authorize any API request, all it needs to know are the Permissions or Authorities. So we can remove the role information from the `UserDetails`, and this got even more simplified where we no longer required to combine roles (by prefixing with **ROLE_**) and permissions. And we no longer need to care about the authorities override issues.
 
 ```
 appUserRepository.findAll()  
-    .stream()  
-    .map(appUser -> User.builder()  
-            .username(appUser.getUsername())  
-            .password(appUser.getPassword())  
-            .authorities(this.getPermissions(appUser.getRoles()))  
-            .build()  
-    )  
-    .collect(Collectors.toList());
+	.stream()  
+	.map(appUser -> User.builder()  
+	        .username(appUser.getUsername())  
+	        .password(appUser.getPassword())  
+	        .authorities(this.getPermissions(appUser.getRoles()))  
+	        .build()  
+	)  
+	.collect(Collectors.toList());
 ```
 
 ```
 private String[] getPermissions(Set<AppRole> roles) {  
-    return roles.stream()  
-            .flatMap(role -> role.getPermissions().stream())  
-            .map(permission -> permission.getName().name())  
-            .collect(Collectors.toSet())  
-            .toArray(new String[0]);  
+	return roles.stream()  
+	        .flatMap(role -> role.getPermissions().stream())  
+	        .map(permission -> permission.getName().name())  
+	        .collect(Collectors.toSet())  
+	        .toArray(new String[0]);  
 }
 ```
 
