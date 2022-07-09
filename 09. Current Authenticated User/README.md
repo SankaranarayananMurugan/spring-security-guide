@@ -6,7 +6,7 @@ Remember we sent the encoded *username* and *password* in the *Authorization* he
 
 Create a Facade component to get the `Authentication` object from `SecurityContextHolder`.
 
-```
+```java
 @Component  
 public class AuthenticationFacade {  
 	public Authentication getAuthentication() {  
@@ -19,7 +19,7 @@ Grab the name of the authenticated user from the `Authentication` object. This w
 
 Let's define `findByUsername()` method in `AppUserRepository` interface.
 
-```
+```java
 @Repository  
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {  
 	AppUser findByUsername(String username);
@@ -28,7 +28,7 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
 Add a method in `UserService` to get the `AppUser` object by *username* using the `@Autowired` `AppUserRepository` interface.
 
-```
+```java
 public AppUser get(String username) {  
 	return appUserRepository.findByUsername(username);
 }
@@ -36,7 +36,7 @@ public AppUser get(String username) {
 
 Let's wire all the pieces above in `CourseService.create(Course)`, to update `createdBy` field with the `AppUser` object before saving the new Course object.
 
-```
+```java
 public Course create(Course newCourse) {  
 	String username = authenticationFacade.getAuthentication().getName();  
 	AppUser currentUser = userService.get(username);  

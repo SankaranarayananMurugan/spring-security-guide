@@ -11,7 +11,7 @@ Basic Auth is an authentication mechanism for any HTTP user agents like browser 
 Let's override the default Spring Security behaviour by explicitly configuring `HttpSecurity`. `WebSecurityConfigurerAdapter` earlier used to configure `HttpSecurity` was deprecated in Spring Security-5.7.0-M2.
 
 We can configure `HttpSecurity` by creating a `SecurityFilterChain` bean in a `@Configuration` class as below:
-```
+```java
 @Configuration  
 public class SecurityConfig {  
 	  @Bean  

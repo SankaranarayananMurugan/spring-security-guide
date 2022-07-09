@@ -6,13 +6,13 @@ Let's create a new course using [Create Course](http://localhost:8080/api/v1/cou
 
 We got `403 Forbidden` error even with the user having the right role. Let's update the `application.properties` to enable the `DEBUG` log for Spring Security.
 
-```
+```java
 logging.level.org.springframework.security=DEBUG
 ```
 
 Restart the application and send the [Create Course](http://localhost:8080/api/v1/courses) API request again. You can see `Invalid CSRF token found for http://localhost:8080/api/v1/courses` error in the log something similar like below:
 
-```
+```log
 o.s.security.web.FilterChainProxy        : Securing POST /api/v1/courses
 w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [...]
 s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to SecurityContextImpl [...]
@@ -45,7 +45,7 @@ Spring Security recommends to use CSRF protection for any request that could be 
 
 For the purpose of our course, let's go with disabling CSRF by updating `HttpSecurity` configuration as below:
 
-```
+```java
 http
 	.csrf().disable()  
 	.authorizeRequests(auth -> auth  

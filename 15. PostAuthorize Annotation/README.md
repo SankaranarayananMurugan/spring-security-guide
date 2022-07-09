@@ -8,7 +8,7 @@ As per the Security objective defined in [Chapter 1](https://github.com/Sankaran
 
 However we can do the same after the execution of the method using the `returnObject`, a built-in expression to access the return value of the method. Similarly we can access the `Authentication` object using `authentication` built-in expression. Now the `@PostAuthorize` syntax looks like below:
 
-```
+```java
 @PreAuthorize(Authority.VIEW_PROFILE)  
 @PostAuthorize("returnObject.username == authentication.name")  
 public AppUser get(Long userId) {  

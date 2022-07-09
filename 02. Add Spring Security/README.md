@@ -3,7 +3,7 @@
 # Add Spring Security
 
 Let’s start adding Spring Security to the application to secure all the REST APIs, which are now accessible to everyone. Add `spring-boot-starter-security` dependency to the `pom.xml` as below:
-```  
+```xml  
 <dependency>
 	<groupId>org.springframework.boot</groupId>    
 	<artifactId>spring-boot-starter-security</artifactId>
@@ -21,7 +21,7 @@ Spring Security enables default behaviours to the application, where all the res
 
 One can notice something similar to the below lines in the application startup log, where a random password is generated for this in-memory user.
 
-```  
+```log
 Using generated security password: fdea9fea-3b53-43f8-b78b-046ca27b03af  
   
 This generated password is for development use only. Your security configuration must be updated before running your application in production.  

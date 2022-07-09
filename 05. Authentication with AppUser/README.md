@@ -11,7 +11,7 @@ Fetch all the `AppUser` records from the database and map them with one of the `
 
 Here we map the *username* and *password* from `AppUser` with the same variables in `org.springframework.security.core.userdetails.User` using the Builder method. Let's keep the authorities with `Collections.EMPTY_SET` for now as it can't be null.
 
-```  
+```java
 @Service
 public class DbUserDetailsService {    
     @Autowired    
@@ -45,7 +45,7 @@ Below class diagram represents the relationship between some of the classes disc
 
 Let's create an `InMemoryUserDetailsManager` bean, one of the few implementations of `UserDetailsService` interface offered by Spring Security. It accepts a list of `UserDetails` objects to manage the user-related data for authentication.
 
-```
+```java
 @Configuration  
 public class SecurityBean {  
 	@Autowired  

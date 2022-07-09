@@ -7,7 +7,7 @@ We know software requirements tends to change over a period of time. And this is
 
 For example, it is valid for a Student to view the list of instructors and get the list of courses filtered by the selected instructor. In this scenario, we have to secure the List Instructors API for both Admin and Student users as below:
 
-```
+```java
 http  
 	.csrf().disable()  
 	.authorizeRequests(auth -> auth  
@@ -34,7 +34,7 @@ Securing each API by defining its own permission and then granting those permiss
 
 Let's change Role-based API access to Permission-based API access by changing the `HttpSecurity` configuration using `hasAuthority()` as below:
 
-```
+```java
 http  
 	.csrf().disable()  
 	.authorizeRequests(auth -> auth  
@@ -52,7 +52,7 @@ http
 
 With `hasAuthority()` Spring Security doesn't need to know about the roles of the user to authorize any API request. All it needs to know are only the Permissions or Authorities. So we can remove the role information from the `UserDetails` as given below: 
 
-```
+```java
 appUserRepository.findAll()  
 	.stream()  
 	.map(appUser -> User.builder()  
@@ -64,7 +64,7 @@ appUserRepository.findAll()
 	.collect(Collectors.toList());
 ```
 
-```
+```java
 private String[] getPermissions(Set<AppRole> roles) {  
 	return roles.stream()  
 	        .flatMap(role -> role.getPermissions().stream())  

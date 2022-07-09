@@ -7,7 +7,7 @@ The default Spring Security behaviour secured all the REST APIs with Basic Auth.
 However, [List Courses](http://localhost:8080/api/v1/courses) and [Get Course](http://localhost:8080/api/v1/courses/%7BcourseId%7D) are Public APIs that should be accessible to everyone without authentication. Let's update `HttpSecurity` configuration to permit these Public APIs for everyone.
 
 Add the Public API urls in a constant class as below:
-```
+```java
 public class SecurityConstants {  
 	public static final String API_LIST_COURSES = "/api/v1/courses";  
 	public static final String API_GET_COURSE = "/api/v1/courses/*";  
@@ -21,7 +21,7 @@ public class SecurityConstants {
 
 Update `HttpSecurity` configuration with one of the antMatchers overloaded method: `antMatchers(HttpMethod, String...)`
 
-```
+```java
 http  
         .authorizeRequests(auth -> auth  
                 .antMatchers(GET, PUBLIC_API_LIST).permitAll()  

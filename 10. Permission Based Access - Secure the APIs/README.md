@@ -9,7 +9,7 @@ We're yet to secure three more APIs, let's apply the Permission based access con
 
 Create a `PermissionEnum` with instances named in the format `ACTION_RESOURCENAME`. Create them for all the resources to be secured, though we're going to only secure the Play Course API in this series.
 
-```
+```java
 public enum PermissionEnum {  
     CREATE_COURSE,
     UPDATE_COURSE,
@@ -22,7 +22,7 @@ public enum PermissionEnum {
 
 Add all the other API URLs in the `SecurityConstant` class.
 
-```
+```java
 public static final String API_UPDATE_COURSES = "/api/v1/courses/*";
 public static final String API_PLAY_COURSE = "/api/v1/courses/play/*";
 public static final String API_VIEW_PROFILE = "/api/v1/users/*";
@@ -30,7 +30,7 @@ public static final String API_VIEW_PROFILE = "/api/v1/users/*";
 
 Update `HttpSecurity` configuration with `API_PLAY_COURSE` url in `antMatchers()` and secure it with `PLAY_COURSE` PermissionEnum using `hasAuthority()`
 
-```
+```java
 http
     .csrf().disable()  
     .authorizeRequests(auth -> auth  

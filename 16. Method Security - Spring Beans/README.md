@@ -4,7 +4,7 @@ Simple authorization rules can be written using SpEL expressions inside Method s
 
 Let's extend the last use case to make Instructor's profiles public in addition to viewing one's own profile. This can only be done by checking if the requested user profile has Instructor role.
 
-```
+```java
 appuser.getRoles()  
 	.stream()  
 	.anyMatch(appRole ->  
@@ -14,7 +14,7 @@ appuser.getRoles()
 
 Is there any simpler way to implement this in SpEL expressions? Well, we can do this using Spring Beans. Define a  `@Component` class named as `ServiceSecurity` to hold a collection of helper methods to secure your Service layer.
 
-```
+```java
 @Component("serviceSecurity")  
 public class ServiceSecurity {
 	public Boolean isInstructor(AppUser appUser) {
@@ -25,7 +25,7 @@ public class ServiceSecurity {
 
 Call the method `ServiceSecurity.isInstructor()` with the `AppUser` object using `returnObject` expression inside `@PostAuthorize`, along with the existing expression using an `or` condition.
 
-```
+```java
 @PreAuthorize(Authority.VIEW_PROFILE)  
 @PostAuthorize("@serviceSecurity.isInstructor(returnObject) or returnObject.username == authentication.name")  
 public AppUser get(Long userId) {  

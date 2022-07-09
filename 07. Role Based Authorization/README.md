@@ -11,7 +11,7 @@ In the last two chapters, we accessed one of the Admin APIs ([List Students](htt
 
 Add the above API urls in the `SecurityConstants` class as below:
 
-```
+```java
 public static final String API_LIST_STUDENTS = "/api/v1/users/students";  
 public static final String API_LIST_INSTRUCTORS = "/api/v1/users/instructors";
 public static final String API_CREATE_COURSES = "/api/v1/courses";
@@ -19,7 +19,7 @@ public static final String API_CREATE_COURSES = "/api/v1/courses";
 
 Update `HttpSecurity` configuration with above API urls in `antMatchers()` and secure them with appropriate RoleEnum instances using `hasRole()` as below:
 
-```
+```java
 http.authorizeRequests(auth -> auth  
 		.antMatchers(GET, PUBLIC_API_LIST).permitAll()  
 		.antMatchers(API_LIST_STUDENTS, API_LIST_INSTRUCTORS).hasRole(ADMIN.name())  
@@ -37,7 +37,7 @@ Accessing the [List Students](http://localhost:8080/api/v1/users/students) API n
 
 Let's map the roles from `AppUser` to `UserDetails` as below:
 
-```
+```java
 appUserRepository.findAll()  
 		.stream()  
 		.map(appUser -> User.builder()  
@@ -50,7 +50,7 @@ appUserRepository.findAll()
 		.collect(Collectors.toList());
 ```
 
-```
+```java
 private String[] getRoles(Set<AppRole> roles) {  
 	return roles.stream()
 	        .map(role -> role.getName().name())

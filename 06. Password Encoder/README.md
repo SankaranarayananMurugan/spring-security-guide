@@ -9,7 +9,7 @@ You may notice from the [List Students](http://localhost:8080/api/v1/users/stude
 
 Let's create a `BCryptPasswordEncoder` bean in the `SecurityBean` class.
 
-```
+```java
 @Bean  
 public PasswordEncoder passwordEncoder() {  
     return new BCryptPasswordEncoder();  
@@ -18,7 +18,7 @@ public PasswordEncoder passwordEncoder() {
 
 Autowire the `PasswordEncoder` in `AppDataInitialiser`, and use it to encode the password for all the users before saving it in the database.
 
-```
+```java
 AppUser gruUser = AppUser.builder()  
         .username("Gru")  
         .password(passwordEncoder.encode("password"))  
@@ -31,7 +31,7 @@ Restarting the application triggers `AppDataInitialiser` to clear the database a
 
 As Spring Security is now aware of the `PasswordEncoder` bean available in the ApplicationContext, *encoded password* can be mapped directly from `AppUser` to `UserDetails` without specifying any prefix like `{noop}` or `{bcrypt}`
 
-```
+```java
 public List<UserDetails> getAllUserDetails() {  
     return appUserRepository.findAll()  
             .stream()  

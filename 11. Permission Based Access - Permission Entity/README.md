@@ -7,7 +7,7 @@ In this chapter, we will cover the database aspects related to the `PermissionEn
 
 Create an `AppPermission` Entity having `name` of type `PermissionEnum`. As we can assign any number of permissions to each role, let's model this relationship as many-to-many with `AppRole` Entity.
 
-```
+```java
 @Entity(name = "app_permission")  
 @Data  
 @Builder  
@@ -32,7 +32,7 @@ public class AppPermission {
 
 Now update the other side of the many-to-many relationship with `AppPermission` in the `AppRole` Entity, where `AppRole` Entity will be the owner of the relation.
 
-```
+```java
 @ManyToMany(fetch = FetchType.EAGER)  
 @JoinTable(
     name = "app_role_to_permission",  
@@ -46,7 +46,7 @@ private Set<AppPermission> permissions;
 
 Create a standard JPARepository interface for AppPermission entity:
 
-```
+```java
 @Repository  
 public interface AppPermissionRepository extends JpaRepository<AppPermission, Long> {  
 }

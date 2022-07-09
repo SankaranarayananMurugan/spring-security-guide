@@ -31,7 +31,7 @@ Some of the valid `@PreAuthorize` annotations are:
 
 Here, the expression resembles the method immediately following the `antMatchers()` in `HttpSecurity` configuration. We will create expressions using `hasAuthority()` with the appropriate `PermissionEnum` instances to secure the service methods using Permission-based model like below:
 
-```
+```java
 @PreAuthorize("hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).PLAY_COURSE.name())")  
 public Course play(Long courseId) {
 }
@@ -41,8 +41,7 @@ SpEL expects the fully qualified name of the `PermissionEnum` instances. It may 
 
 SpEL expression must always be a String constant in `@PreAuthorize()`. We can move all the possible expressions in a constant class like below:
 
-```
-  
+```java
 public class Authority {  
 	public static final String LIST_STUDENTS = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).LIST_STUDENTS.name())";  
 	public static final String LIST_INSTRUCTORS = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).LIST_INSTRUCTORS.name())";  
@@ -55,7 +54,7 @@ public class Authority {
 
 Above `@PreAuthorize` annotation can now be simplified using the Constant.
 
-```
+```java
 @PreAuthorize(Authority.PLAY_COURSE)  
 public Course play(Long courseId) {
 }
@@ -65,7 +64,7 @@ We can rewrite the same for other service methods as well. While doing so, we ha
 
 Let's make `getRoleByName()` private, and call the method from two different service methods using `RoleEnum.STUDENT` and `RoleEnum.INSTRUCTOR` respectively. Now we can secure these two service methods using specific permissions.
 
-```
+```java
 @PreAuthorize(Authority.LIST_STUDENTS)  
 public List<AppUser> listStudents() {  
     return this.listByRoleName(STUDENT);  
@@ -79,7 +78,7 @@ public List<AppUser> listInstructors() {
 
 We can now remove the `antMatchers()` from `HttpSecurity` configuration and make it leaner as recommended by Spring Security
 
-```
+```java
 http  
 	.csrf().disable()  
 	.authorizeRequests(auth -> auth  

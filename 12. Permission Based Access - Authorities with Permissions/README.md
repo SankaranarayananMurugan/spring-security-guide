@@ -5,7 +5,7 @@ In this chapter, we will update the `UserDetails` object with the Permissions as
 
 One user can have many roles and each role can have many permissions. So let's add below private method to combine all the permissions associated with each roles assigned to the user.
 
-```
+```java
 private Set<String> getPermissions(Set<AppRole> roles) {  
     return roles.stream()  
             .flatMap(role -> role.getPermissions().stream())  
@@ -20,7 +20,7 @@ As mentioned in [Chapter 7](https://github.com/SankaranarayananMurugan/spring-se
 
 Let's update the existing `getRoles()` to append the prefix *ROLE_* with the role name as below:
 
-```
+```java
 private Set<String> getRoles(Set<AppRole> roles) {  
     return roles.stream()  
             .map(role -> String.format("ROLE_%s", role.getName().name()))  
@@ -30,7 +30,7 @@ private Set<String> getRoles(Set<AppRole> roles) {
 
 We can remove the `roles()` method from `User.builder()`, and use only authorities with the roles and permissions combined as below:
 
-```
+```java
 appUserRepository.findAll()  
         .stream()  
         .map(appUser -> User.builder()  
@@ -42,7 +42,7 @@ appUserRepository.findAll()
         .collect(Collectors.toList());
 ```
 
-```
+```java
 private String[] getRolesAndPermissions(Set<AppRole> appRoles) {  
     Set<String> roles = this.getRoles(appRoles);  
     Set<String> permissions = this.getPermissions(appRoles);  
