@@ -2,7 +2,7 @@
 
 We are still using `InMemoryUserDetailsManager` which is backed by an in-memory map, mainly intended for testing and demonstration purposes. We need an implementation of `UserDetailsService` backed by database for production implementation. We can do so easily with minor changes as we are already using database to load all the users into `InMemoryUserDetailsManager`.
 
-First of all remove `userDetailsService()` bean method which is creating `InMemoryUserDetailsManager` in `SecurityBean` and make it leaner.
+First of all remove `userDetailsService()` bean method which creates `InMemoryUserDetailsManager` object in `SecurityBean`.
 
 ```java
 @Configuration  
@@ -14,7 +14,7 @@ public class SecurityBean {
 }
 ```
 
-Update `DbUserDetailsService` to implement `UserDetailsService` interface which requires us to implement only one method `loadUserByUsername()`. And remove `loadAllUserDetails()` as we no longer required.
+Update `DbUserDetailsService` to implement `UserDetailsService` interface which requires us to implement only one method `loadUserByUsername()`. And remove `loadAllUserDetails()` as we no longer require it.
 
 ```java
 @Override  
