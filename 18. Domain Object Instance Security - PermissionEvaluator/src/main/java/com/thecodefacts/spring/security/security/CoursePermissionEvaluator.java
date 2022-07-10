@@ -32,6 +32,8 @@ public class CoursePermissionEvaluator implements PermissionEvaluator {
                     return this.isCreatedBy(authentication, course);
                 case PLAY_COURSE:
                     return this.isEnrolledStudent(authentication, course.getId());
+                default:
+                    return false;
             }
         }
         return false;

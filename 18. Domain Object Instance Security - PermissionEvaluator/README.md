@@ -90,3 +90,9 @@ Send a [Play Course](http://localhost:8080/api/v1/courses/play/%7BcourseId%7D) r
 Send another request with the same user for any course not enrolled by him, and you will get `403 Forbidden` error
 
 ![Play course 403 response](./assets/play_course_403.png)
+
+> **Exercise**
+> 
+> Remember we have `isInstructor()` authorization check in `ServiceSecurity` class which is being used in `@PostAuthorize` method security to secure `View Profile` service. To be consistent let's move the check to its own `PermissionEvaluator` implementation named `AppUserPermissionEvaluator`, and follow the same pattern as we did for `CoursePermissionEvaluator`. Also change the SpEL expression from `hasAuthority()` to `hasPermission`. We no longer need `ServiceSecurity` class and it can be removed.
+>
+> However `AppUserPermissionEvaluator` will never be called unless registered with `DefaultMethodSecurityExpressionHandler`. Let's see how we can fix this in the next chapter.
