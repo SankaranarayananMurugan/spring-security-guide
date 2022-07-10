@@ -10,7 +10,7 @@ import static com.thecodefacts.spring.security.enums.PermissionEnum.*;
 import static org.springframework.http.HttpMethod.*;
 
 @Configuration
-public class SecurityConfig {
+public class ApiSecurityConfig {
     @Bean
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http

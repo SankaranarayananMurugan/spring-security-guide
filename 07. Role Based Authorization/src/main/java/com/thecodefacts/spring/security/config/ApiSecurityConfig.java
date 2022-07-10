@@ -12,11 +12,10 @@ import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
-public class SecurityConfig {
+public class ApiSecurityConfig {
     @Bean
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
                 .authorizeRequests(auth -> auth
                         .antMatchers(GET, PUBLIC_API_LIST).permitAll()
                         .antMatchers(API_LIST_STUDENTS, API_LIST_INSTRUCTORS).hasRole(ADMIN.name())
