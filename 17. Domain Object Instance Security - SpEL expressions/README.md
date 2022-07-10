@@ -11,28 +11,28 @@ So we need to enhance the security of these APIs in addition to the assigned per
 ```java
 // Check if the course is created by the authenticated user
 public boolean isCreatedBy(Authentication authentication, Long courseId) {
-	Optional<Course> course = courseRepository.findById(courseId);
-	if (course.isPresent()) {
-		return course.get()
-			.getCreatedBy()
-			.getUsername()
-			.equalsIgnoreCase(authentication.getName());
-	}
-	return false;
+   Optional<Course> course = courseRepository.findById(courseId);
+   if (course.isPresent()) {
+      return course.get()
+         .getCreatedBy()
+         .getUsername()
+         .equalsIgnoreCase(authentication.getName());
+   }
+   return false;
 }
 ```
 
 ```java
 // Check if the course is enrolled by the authenticated user
 public boolean isEnrolledCourse(Authentication authentication, Long courseId) {
-	Optional<AppUser> student = appUserRepository.findByUsername(authentication.getName());  
-	if (student.isPresent()) {  
-	    return student.get()  
-	            .getEnrolledCourses()  
-	            .stream()  
-	            .anyMatch(course -> course.getId().equals(courseId));  
-	}  
-	return false;
+   Optional<AppUser> student = appUserRepository.findByUsername(authentication.getName());  
+   if (student.isPresent()) {
+      return student.get()
+         .getEnrolledCourses()
+         .stream()
+         .anyMatch(course -> course.getId().equals(courseId));
+   }
+   return false;
 }
 ```
 
@@ -93,7 +93,5 @@ Spring Security's ACL is great and easier to write but it does not scale well fo
 The drawbacks of ACL can be overcome by Attribute-based access control (ABAC) or Policy-based access control (PBAC). ABAC is a different and recently popular authorization mechanism to secure the domain object instances.
 
 XACML is a specification to define and evaluate such attribute-based access control policies. We are not going to cover XACML here, we will then be deviating from Spring Security. If all your access control needs can be implemented by simple patterns and conditions within the context of your domain model, specifications like XACML will be an overkill for small and medium-sized applications.
-
-Especially in a Microservice architecture, where each microservice owning only a minor subset of the larger Business domain and the team managing the microservice being in charge of securing those domain object instances, who can define and implement their own domain model permissions does not want to externalise the authorization policies.
 
 Let's see how we are going to implement ABAC with Spring Security's `PermissionEvaluator` interface in the coming chapters.

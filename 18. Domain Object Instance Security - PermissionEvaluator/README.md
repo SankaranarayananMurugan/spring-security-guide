@@ -7,33 +7,33 @@ Let's define a class named `CoursePermissionEvaluator` and implement the `Permis
 ```java
 @Component
 public class CoursePermissionEvaluator implements PermissionEvaluator {  
-	@Override  
-	public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {  
-		if (targetDomainObject != null) {  
-			Course course = (Course) targetDomainObject;  
-			PermissionEnum permissionEnum = PermissionEnum.valueOf((String) permission);  
-
-			switch(permissionEnum) {  
-				case UPDATE_COURSE:  
-					return this.isCreatedBy(authentication, course);  
-				case PLAY_COURSE:  
-					return this.isEnrolledStudent(authentication, course.getId());  
-			}  
-		}  
-		return false;  
-	}  
-
-	@Override  
-	public boolean hasPermission(Authentication authentication, Serializable targetId, String targetType, Object permission) {  
-		if (targetId != null) {  
-			Long courseId = (Long) targetId;  
-			Optional<Course> course = courseRepository.findById(courseId);  
-			if (course.isPresent()) {  
-				return this.hasPermission(authentication, course.get(), permission);  
-			}  
-		}  
-		return false;  
-	}
+    @Override  
+    public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {  
+        if (targetDomainObject != null) {  
+            Course course = (Course) targetDomainObject;  
+            PermissionEnum permissionEnum = PermissionEnum.valueOf((String) permission);  
+            
+            switch(permissionEnum) {  
+                case UPDATE_COURSE:  
+                    return this.isCreatedBy(authentication, course);  
+                case PLAY_COURSE:  
+                    return this.isEnrolledStudent(authentication, course.getId());  
+            }  
+        }  
+        return false;  
+    }  
+    
+    @Override  
+    public boolean hasPermission(Authentication authentication, Serializable targetId, String targetType, Object permission) {  
+        if (targetId != null) {  
+            Long courseId = (Long) targetId;  
+            Optional<Course> course = courseRepository.findById(courseId);  
+            if (course.isPresent()) {  
+                return this.hasPermission(authentication, course.get(), permission);  
+            }  
+        }  
+        return false;  
+    }
 }
 ```
 
@@ -44,21 +44,21 @@ We can move the decision making logic for each permission in its own private met
 ```java
 // Check if the requested course is created by the authenticated user.  
 private boolean isCreatedBy(Authentication authentication, Course course) {  
-	return course.getCreatedBy().getUsername().equalsIgnoreCase(authentication.getName());  
+    return course.getCreatedBy().getUsername().equalsIgnoreCase(authentication.getName());  
 }
 ```
 
 ```java
 // Check if the requested course is enrolled by the authenticated user.  
-private boolean isEnrolledStudent(Authentication authentication, Long courseId) {  
-	Optional<AppUser> student = appUserRepository.findByUsername(authentication.getName());  
-	if (student.isPresent()) {  
-		return student.get()  
-			.getEnrolledCourses()  
-			.stream()  
-			.anyMatch(course -> course.getId().equals(courseId));  
-	}  
-	return false;  
+private boolean isEnrolledStudent(Authentication authentication, Long courseId) {
+    Optional<AppUser> student = appUserRepository.findByUsername(authentication.getName());  
+    if (student.isPresent()) {
+        return student.get()
+            .getEnrolledCourses()
+            .stream()
+            .anyMatch(course -> course.getId().equals(courseId));
+    }
+    return false;
 }
 ```
 
@@ -68,16 +68,16 @@ Though we annotated the *CoursePermissionEvaluator* as a Component, Spring Secur
 @Configuration  
 @EnableGlobalMethodSecurity(prePostEnabled = true)  
 public class SecurityConfig extends GlobalMethodSecurityConfiguration {  
-	@Autowired  
-	private CoursePermissionEvaluator coursePermissionEvaluator;  
-
-	@Override  
-	protected MethodSecurityExpressionHandler createExpressionHandler() {  
-		DefaultMethodSecurityExpressionHandler defaultMethodSecurityExpressionHandler  
-				= new DefaultMethodSecurityExpressionHandler();  
-		defaultMethodSecurityExpressionHandler.setPermissionEvaluator(coursePermissionEvaluator);  
-		return defaultMethodSecurityExpressionHandler;  
-	}  
+    @Autowired  
+    private CoursePermissionEvaluator coursePermissionEvaluator;  
+    
+    @Override  
+    protected MethodSecurityExpressionHandler createExpressionHandler() {  
+        DefaultMethodSecurityExpressionHandler defaultMethodSecurityExpressionHandler  
+                = new DefaultMethodSecurityExpressionHandler();  
+        defaultMethodSecurityExpressionHandler.setPermissionEvaluator(coursePermissionEvaluator);  
+        return defaultMethodSecurityExpressionHandler;  
+    }  
 }
 ```
 

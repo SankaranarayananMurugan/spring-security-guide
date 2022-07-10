@@ -117,7 +117,8 @@ public boolean hasPermission(Authentication authentication, Serializable targetI
 }
 ```
 
-Don't forget to update the `SecurityConfig` to wire the `PermissionEvaluatorStrategyContext` instead of `CoursePermissionEvaluator` before testing the APIs.
+> Note
+> Don't forget to update the `SecurityConfig` to wire the `PermissionEvaluatorStrategyContext` instead of `CoursePermissionEvaluator` before testing the APIs.
 
 We achieved more fine-grained access control on the domain object instances using the security checks based on the attributes of the subject and the object. This is a simple and efficient solution to achieve ABAC using Spring's built-in SpEL capability. From the `PermissionEvaluator` implementations for each domain class we can easily understand who can do what on them. It is easier to manage the permissions as each implementation own the permissions related to only one domain class defined in the parameterized type.
 

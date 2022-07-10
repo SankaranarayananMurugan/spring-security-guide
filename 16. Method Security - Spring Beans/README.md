@@ -6,10 +6,10 @@ Let's extend the last use case to make Instructor's profiles public in addition 
 
 ```java
 appuser.getRoles()  
-	.stream()  
-	.anyMatch(appRole ->  
-	        appRole.getName().equals(RoleEnum.INSTRUCTOR)  
-	);
+    .stream()  
+    .anyMatch(appRole ->  
+            appRole.getName().equals(RoleEnum.INSTRUCTOR)  
+    );
 ```
 
 Is there any simpler way to implement this in SpEL expressions? Well, we can do this using Spring Beans. Define a  `@Component` class named as `ServiceSecurity` to hold a collection of helper methods to secure your Service layer.
@@ -17,9 +17,9 @@ Is there any simpler way to implement this in SpEL expressions? Well, we can do 
 ```java
 @Component("serviceSecurity")  
 public class ServiceSecurity {
-	public Boolean isInstructor(AppUser appUser) {
-		...
-	}
+    public Boolean isInstructor(AppUser appUser) {
+        ...
+    }
 }
 ```
 
@@ -29,7 +29,7 @@ Call the method `ServiceSecurity.isInstructor()` with the `AppUser` object using
 @PreAuthorize(Authority.VIEW_PROFILE)  
 @PostAuthorize("@serviceSecurity.isInstructor(returnObject) or returnObject.username == authentication.name")  
 public AppUser get(Long userId) {  
-	...
+    ...
 }
 ```
 

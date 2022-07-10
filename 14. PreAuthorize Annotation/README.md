@@ -43,12 +43,12 @@ SpEL expression must always be a String constant in `@PreAuthorize()`. We can mo
 
 ```java
 public class Authority {  
-	public static final String LIST_STUDENTS = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).LIST_STUDENTS.name())";  
-	public static final String LIST_INSTRUCTORS = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).LIST_INSTRUCTORS.name())";  
-	public static final String VIEW_PROFILE = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).VIEW_PROFILE.name())";  
-	public static final String CREATE_COURSE = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).CREATE_COURSE.name())";  
-	public static final String UPDATE_COURSE = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).UPDATE_COURSE.name())";  
-	public static final String PLAY_COURSE = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).PLAY_COURSE.name())";    
+    public static final String LIST_STUDENTS = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).LIST_STUDENTS.name())";
+    public static final String LIST_INSTRUCTORS = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).LIST_INSTRUCTORS.name())";
+    public static final String VIEW_PROFILE = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).VIEW_PROFILE.name())";
+    public static final String CREATE_COURSE = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).CREATE_COURSE.name())";
+    public static final String UPDATE_COURSE = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).UPDATE_COURSE.name())";
+    public static final String PLAY_COURSE = "hasAuthority(T(com.thecodefacts.spring.security.enums.PermissionEnum).PLAY_COURSE.name())";
 }
 ```
 
