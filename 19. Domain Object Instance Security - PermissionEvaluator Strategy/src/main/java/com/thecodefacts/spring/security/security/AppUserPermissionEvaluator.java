@@ -4,7 +4,6 @@ import com.thecodefacts.spring.security.domain.AppUser;
 import com.thecodefacts.spring.security.enums.PermissionEnum;
 import com.thecodefacts.spring.security.repo.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +13,7 @@ import java.util.Optional;
 import static com.thecodefacts.spring.security.enums.RoleEnum.INSTRUCTOR;
 
 @Component
-public class AppUserPermissionEvaluator implements PermissionEvaluator {
+public class AppUserPermissionEvaluator implements PermissionEvaluatorStrategy<AppUser> {
     @Autowired
     private AppUserRepository appUserRepository;
 
@@ -58,5 +57,10 @@ public class AppUserPermissionEvaluator implements PermissionEvaluator {
     // Check if the requested appuser object is same as authenticated user
     public boolean isSame(Authentication authentication, AppUser appuser) {
         return authentication.getName().equalsIgnoreCase(appuser.getUsername());
+    }
+
+    @Override
+    public Class<AppUser> getTargetType() {
+        return AppUser.class;
     }
 }
