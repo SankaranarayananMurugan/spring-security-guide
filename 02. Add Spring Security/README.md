@@ -42,7 +42,7 @@ By default, Spring Security enables **Basic Authentication** for all resources i
 In this case, it chooses `org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint` to respond with *401 Unauthorized* error status in Postman. And it chooses `org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint` to respond with *302 Found redirect* error status in the browser to redirect to login page.
 
 
-<br/><hr/>
+***
 
 Previous: [01. Introduction](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/01.%20Introduction)
 
