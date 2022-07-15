@@ -46,3 +46,7 @@ At the moment, all the REST APIs are accessible to everyone. Our objective is to
 | Instructor (2) | Gru, Lucy |
 | Admin (1) | Admin |
 
+<div style="float:right">
+Next: <a href="https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/02.%20Add%20Spring%20Security">02. Add Spring Security
+</a>
+</div>
