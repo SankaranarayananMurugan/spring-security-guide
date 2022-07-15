@@ -135,3 +135,7 @@ We explored below techniques to secure different layers, and now we came to an e
 So far we have addressed three out of four security concerns for any enterprise application. Of course we visited Authentication by enabling `Basic Authentication` at the start of the course and used until now to identify the user. We will continue to see various other authentication mechanisms in the upcoming chapters.
 
 Before that let us replace `InMemoryUserDetailsManager` with our own `UserDetailsService` implementation in the next chapter.
+
+Previous: [18. Domain Object Instance Security - PermissionEvaluator](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/18.%20Domain%20Object%20Instance%20Security%20-%20PermissionEvaluator)
+
+Next: [20. DB Based UserDetailsService](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/20.%20DB%20Based%20UserDetailsService)

@@ -96,3 +96,9 @@ Send another request with the same user for any course not enrolled by him, and 
 > Remember we have `isInstructor()` authorization check in `ServiceSecurity` class which is being used in `@PostAuthorize` method security to secure `View Profile` service. To be consistent let's move the check to its own `PermissionEvaluator` implementation named `AppUserPermissionEvaluator`, and follow the same pattern as we did for `CoursePermissionEvaluator`. Also change the SpEL expression from `hasAuthority()` to `hasPermission`. We no longer need `ServiceSecurity` class and it can be removed.
 >
 > However `AppUserPermissionEvaluator` will never be called unless registered with `DefaultMethodSecurityExpressionHandler`. Let's see how we can fix this in the next chapter.
+
+***
+
+Previous: [17. Domain Object Instance Security - SpEL expressions](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/17.%20Domain%20Object%20Instance%20Security%20-%20SpEL%20expressions)
+
+Next: [19. Domain Object Instance Security - PermissionEvaluator Strategy](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/19.%20Domain%20Object%20Instance%20Security%20-%20PermissionEvaluator%20Strategy)

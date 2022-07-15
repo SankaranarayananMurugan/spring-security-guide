@@ -1,6 +1,5 @@
 # Domain Object Instance Security - SpEL Expression
 
-
 We have introduced fine grained access control using permissions in `HttpSecurity` configuration to secure each REST API. Then we moved them to secure the Service layer using Method security annotations as the recommended approach. Remember we assigned `PLAY_COURSE` and `UPDATE_COURSE` permissions to the `STUDENT` and `INSTRUCTOR` roles respectively. It allowed all the Students to play all the courses and all the Instructors to update all the courses. But our objective is
 
 1. To play only the courses enrolled by the Student.
@@ -95,3 +94,9 @@ The drawbacks of ACL can be overcome by Attribute-based access control (ABAC) or
 XACML is a specification to define and evaluate such attribute-based access control policies. We are not going to cover XACML here, we will then be deviating from Spring Security. If all your access control needs can be implemented by simple patterns and conditions within the context of your domain model, specifications like XACML will be an overkill for small and medium-sized applications.
 
 Let's see how we are going to implement ABAC with Spring Security's `PermissionEvaluator` interface in the coming chapters.
+
+***
+
+Previous: [16. Method Security - Spring Beans](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/16.%20Method%20Security%20-%20Spring%20Beans)
+
+Next: [18. Domain Object Instance Security - PermissionEvaluator](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/18.%20Domain%20Object%20Instance%20Security%20-%20PermissionEvaluator)

@@ -1,4 +1,3 @@
-
 # Role Based Authorization
 
 In the last two chapters, we accessed one of the Admin APIs ([List Students](http://localhost:8080/api/v1/users/students)) using Bob, whose role is a Student. In this chapter, we will fix it by securing the below APIs using Role-based authorization.
@@ -73,3 +72,9 @@ Restart the application and access the [List Students](http://localhost:8080/api
 > Here we're calling `roles()` after `authorities()` in order to override the `Collections.EMPTY_SET`, that means we should never call them both on `User.UserBuilder` as the latest will always override the authorities set by the previous one.
 >
 > In those scenarios, where you want to set both roles and authorities, it is always preferable to call `authorities()` with roles explicitly prefixed with **ROLE_** by yourself, as we will see in the upcoming chapters.
+
+***
+
+Previous: [06. Password Encoder](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/06.%20Password%20Encoder)
+
+Next: [08. Disable CSRF](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/08.%20Disable%20CSRF)

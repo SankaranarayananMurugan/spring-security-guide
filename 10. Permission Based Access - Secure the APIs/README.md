@@ -46,3 +46,9 @@ http
 We can expect `403 Forbidden` error on sending a request to Play Course endpoint as a Student user (say, Bob), as we have neither assigned any Permissions to the Roles nor updated the authorities in `UserDetails`.
 
 ![Play course throw 403 error for Bob](./assets/play_course_403_bob.png)
+
+***
+
+Previous: [09. Current Authenticated User](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/09.%20Current%20Authenticated%20User)
+
+Next: [11. Permission Based Access - Permission Entity](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/11.%20Permission%20Based%20Access%20-%20Permission%20Entity)

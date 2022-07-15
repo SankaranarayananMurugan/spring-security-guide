@@ -40,3 +40,9 @@ Now send a [View Profile](http://localhost:8080/api/v1/users/%7BuserId%7D) reque
 Whereas the same request for another student say *Kevin* will fail with `403 Forbidden` error.
 
 ![View other student - 200](./assets/view_other_user_403.png)
+
+***
+
+Previous: [15. Method Security - PostAuthorize](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/15.%20Method%20Security%20-%20PostAuthorize)
+
+Next: [17. Domain Object Instance Security - SpEL expressions](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/17.%20Domain%20Object%20Instance%20Security%20-%20SpEL%20expressions)

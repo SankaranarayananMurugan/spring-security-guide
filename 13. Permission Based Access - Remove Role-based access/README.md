@@ -1,4 +1,3 @@
-
 # Permission Based Access - Remove Role-based Access
 
 ## Coarse grained access control
@@ -88,3 +87,9 @@ As each API is secured against its own permission, and users will now only have 
 >
 > 1. There will be no change in the API access behaviour after replacing the Role-based API access with Permission-based API access.
 > 2. In addition to Play Course, we have secured Update Course as well as View Profile APIs with its own permissions, but still these three APIs have not met the Security Objectives defined in [Chapter 1](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/01.%20Introduction)
+
+***
+
+Previous: [12. Permission Based Access - Authorities with Permissions](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/12.%20Permission%20Based%20Access%20-%20Authorities%20with%20Permissions)
+
+Next: [14. Method Security - PreAuthorize](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/14.%20Method%20Security%20-%20PreAuthorize)

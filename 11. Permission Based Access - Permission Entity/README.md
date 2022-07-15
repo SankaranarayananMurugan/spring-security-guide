@@ -1,4 +1,3 @@
-
 # Permission Based Access - Permission Entity
 
 In this chapter, we will cover the database aspects related to the `PermissionEnum` instances we introduced in the last chapter.
@@ -64,3 +63,9 @@ Update `AppDataInitialiser` in order to create Permission records for each `Perm
 
 > **Note**
 > As we have changes in the `Entity` classes, in order to have those changes reflected, drop the database and re-create it before starting the application.
+
+***
+
+Previous: [10. Permission Based Access - Secure the APIs](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/10.%20Permission%20Based%20Access%20-%20Secure%20the%20APIs)
+
+Next: [12. Permission Based Access - Authorities with Permissions](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/12.%20Permission%20Based%20Access%20-%20Authorities%20with%20Permissions)

@@ -1,4 +1,3 @@
-
 # Password Encoder
 
 You may notice from the [List Students](http://localhost:8080/api/v1/users/students) response that the passwords in the database are not encrypted for any users. In this chapter, we will introduce the most commonly used `BCryptPasswordEncoder` offered by Spring Security.
@@ -52,3 +51,9 @@ Let's restart the application and use Bob (the STUDENT user) to access the [List
 As you can see from the response that the passwords in the database are now encrypted. But still it is not good to see the passwords in the response though encrypted. We can annotate the *password* field in `AppUser` entity with `@JsonIgnore` annotation to ignore it.
 
 ![Passwords ignored - List Students API](./assets/password_ignored.png)
+
+***
+
+Previous: [05. Authentication with AppUser](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/05.%20Authentication%20with%20AppUser)
+
+Next: [07. Role Based Authorization](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/07.%20Role%20Based%20Authorization)

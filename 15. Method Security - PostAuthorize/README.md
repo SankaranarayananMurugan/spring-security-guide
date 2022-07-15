@@ -24,3 +24,9 @@ Restart the application and send [View Profile](http://lcoalhost:8080/api/v1/use
 Similarly send another request to view `Gru` profile using `Bob`, we will get `403 Forbidden` error.
 
 ![View Profile - 200](./assets/view_profile_403.png)
+
+***
+
+Previous: [14. Method Security - PreAuthorize](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/14.%20Method%20Security%20-%20PreAuthorize)
+
+Next: [16. Method Security - Spring Beans](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/16.%20Method%20Security%20-%20Spring%20Beans)

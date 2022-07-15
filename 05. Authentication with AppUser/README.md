@@ -1,6 +1,3 @@
-
-
-
 # Authentication with AppUser
 
 We have used the default user created by Spring Security so far. It’s time to provide Spring Security with the application’s user details from the database.
@@ -67,3 +64,9 @@ Spring Security neither creates the default user nor generates the random passwo
 We can use any of these AppUser from the database to authenticate the secured REST APIs. Let's use Bob (the STUDENT user) to access the [List Students](http://localhost:8080/api/v1/users/students) API in Postman using Basic Auth.
 
 ![List Students Response - Basic Auth using AppUser - Postman](./assets/list_students_app_user_basic_auth.png)
+
+***
+
+Previous: [04. Permit Public APIs](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/04.%20Permit%20Public%20APIs)
+
+Next: [06. Password Encoder](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/06.%20Password%20Encoder)

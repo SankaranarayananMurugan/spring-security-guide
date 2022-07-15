@@ -62,3 +62,9 @@ Restart the application and send the [Create Course](http://localhost:8080/api/v
 `Authorized filter invocation [POST /api/v1/courses] with attributes [hasRole('ROLE_INSTRUCTOR')]`
 
 ![Create Course - 403 Forbidden - Gru](./assets/create_course_201.png)
+
+***
+
+Previous: [07. Role Based Authorization](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/07.%20Role%20Based%20Authorization)
+
+Next: [09. Current Authenticated User](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/09.%20Current%20Authenticated%20User)

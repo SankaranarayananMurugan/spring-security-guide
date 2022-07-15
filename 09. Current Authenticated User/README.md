@@ -48,3 +48,9 @@ public Course create(Course newCourse) {
 Restart the application and send a new Create Course request as an Instructor (Gru)
 
 ![Create course with createdBy having the request sender details](./assets/create_course_201.png)
+
+***
+
+Previous: [08. Disable CSRF](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/08.%20Disable%20CSRF)
+
+Next: [10. Permission Based Access - Secure the APIs](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/10.%20Permission%20Based%20Access%20-%20Secure%20the%20APIs)

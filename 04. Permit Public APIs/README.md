@@ -1,5 +1,3 @@
-
-
 # Permit Public APIs
 
 The default Spring Security behaviour secured all the REST APIs with Basic Auth. Configuring `HttpSecurity` to override this default behaviour also did the same. In both scenarios, the REST API consumer has to provide *username* and *password* for authentication, failing to provide them resulted in *401 Unauthorized* error.
@@ -37,3 +35,8 @@ Now accessing the two Public APIs in Postman without *username* and *password* b
 As List Courses and Create Course endpoints are the same but with different HttpMethod, we have to  specify `HttpMethod.GET` in the antMatchers to permit only the List Courses API.
 
 The order in which the antMatchers are defined is important, with most restricted resources defined at the top followed by least restricted resources at the bottom.
+
+***
+
+Previous: [03. Enable Basic Authentication](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/03.%20Enable%20Basic%20Authentication)
+Next: [05. Authentication with AppUser](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/05.%20Authentication%20with%20AppUser)

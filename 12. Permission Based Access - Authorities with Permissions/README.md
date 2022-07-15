@@ -1,4 +1,3 @@
-
 # Permission Based Access - Authorities with Permissions
 
 In this chapter, we will update the `UserDetails` object with the Permissions associated with each role using `authorities()`.
@@ -73,3 +72,9 @@ Sending another Play Course request as an Admin user will respond with `403 Forb
 
 > **Note**
 > We have secured the Play Course API just from the Admin user. We are yet to restrict the Student user to play only the course they are enrolled with, as per the Security Objective defined in [Chapter 1](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/01.%20Introduction).
+
+***
+
+Previous: [11. Permission Based Access - Permission Entity](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/11.%20Permission%20Based%20Access%20-%20Permission%20Entity)
+
+Next: [13. Permission Based Access - Remove Role-based access](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/13.%20Permission%20Based%20Access%20-%20Remove%20Role-based%20access)

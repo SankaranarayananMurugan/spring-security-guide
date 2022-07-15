@@ -92,3 +92,9 @@ There will not be any change in the Security behaviour with the shift from Web r
 
 > **Note**
 > You may often find developers using Method security annotations in Controller methods, though it is not restricted to do so. But Spring Security recommends applying them to the Service layer because Controller is simply the incorrect architectural layer to implement authorization decisions concerning services layer methods or domain object instances.
+
+***
+
+Previous: [13. Permission Based Access - Remove Role-based access](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/13.%20Permission%20Based%20Access%20-%20Remove%20Role-based%20access)
+
+Next: [15. Method Security - PostAuthorize](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/15.%20Method%20Security%20-%20PostAuthorize)
