@@ -33,3 +33,8 @@ Accessing the [List Courses](http://localhost:8080/api/v1/courses) API from brow
 ![Browser prompts username and password](./assets/list_courses_browser.png)
 
 ![Browser responds with list of courses](./assets/list_courses_browser_200.png)
+
+***
+
+Previous: [02. Add Spring Security](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/02.%20Add%20Spring%20Security)
+Next: [04. Permit Public APIs](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/04.%20Permit%20Public%20APIs)
