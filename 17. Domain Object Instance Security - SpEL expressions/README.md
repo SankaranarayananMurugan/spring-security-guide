@@ -85,7 +85,9 @@ Spring Security's ACL is great and easier to write but it does not scale well fo
 
 1. Assume an application having 1 Million object instances as Objects, 1000 users as Subjects and 4 basic actions (CRUD) = 4 Billion ACL records. Imagine a query to search for an ACL record on these many records  for each Service method invocation. This can potentially cause performance issues and becomes a maintenance nightmare.
 2. ACL records are basically driven based on the `identifiers` of the subject and the object mapped together with the permissions in the database table, not driven by the attributes of the subject and the object. This in itself have few practical issues.
+
    *a.* It is quite difficult to understand from the ACL table who can do what on which resource.
+
    *b.* Any change in the permission requires a huge insert/update/deletion of these ACL records corresponding to the impacted subject associated with the object under authorization. e.g., Assume `Spring Security Fundamentals` is a course under a topic named `Spring` grouped under a category named `Programming Languages`. And let's introduce a new Role `REVIEWER` with `UPDATE_COURSE`  permission on the courses with the topic in which the `REVIEWER` is tagged as an expert.
 
 ## Attribute-based Access Control (ABAC)

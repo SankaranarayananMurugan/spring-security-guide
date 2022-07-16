@@ -39,4 +39,5 @@ The order in which the antMatchers are defined is important, with most restricte
 ***
 
 Previous: [03. Enable Basic Authentication](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/03.%20Enable%20Basic%20Authentication)
+
 Next: [05. Authentication with AppUser](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/05.%20Authentication%20with%20AppUser)

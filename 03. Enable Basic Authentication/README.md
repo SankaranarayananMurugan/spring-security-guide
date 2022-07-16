@@ -37,4 +37,5 @@ Accessing the [List Courses](http://localhost:8080/api/v1/courses) API from brow
 ***
 
 Previous: [02. Add Spring Security](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/02.%20Add%20Spring%20Security)
+
 Next: [04. Permit Public APIs](https://github.com/SankaranarayananMurugan/spring-security-guide/tree/main/04.%20Permit%20Public%20APIs)
