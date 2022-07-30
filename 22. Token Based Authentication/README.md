@@ -1,4 +1,4 @@
-# Token Based Authentication
+# Token Based Authentication - Generate Token
 
 Tokens are always better than username/password as they are uniquely generated on each login. And they do not hang around for a long time as they are invalidated either when the user logout or when it reaches its expiry time.
 
@@ -6,7 +6,7 @@ Token-based auth requires the user to provide username/password only once during
 
 But using tokens requires a bit of learning curve on how to generate, verify and invalidate them which is not the case with Basic Auth. We will implement token-based authentication mechanism in this section using our own token of random string (say UUID).
 
-JSON Web Token (JWT) is an open, industry standard token specification widely popular for many reasons. But we will implement and understand how token-based authentication mechanism works and then we will replace our token with JWT using battle-tested production grade JWT library.
+JSON Web Token (JWT) is an open, industry standard token specification widely popular for many reasons. Rather than focusing on the type of the token first, let's understand how token-based authentication mechanism works. And then we will replace our token with JWT using battle-tested production grade JWT library.
 
 First we will create `AuthenticationService` component and implement a method `generateToken()` accepting *username* and *password*.
 
@@ -22,8 +22,7 @@ public class AuthenticationService {
 
 We are not going to perform authentication ourselves by checking the existence of username and password in the database. Spring Security provides `AuthenticationManager` interface having only one method `authenticate()` which accepts and returns `Authentication` object. Remember `Authentication` object we retrieved earlier from `SecurityContext` inside `AuthenticationFacade` class which represented the current authenticated user.
 
-We will use `UsernamePasswordAuthenticationToken` class to create an unauthenticated `Authentication` object with the *username* & *password* and authenticate it using `AuthenticationManager`. It will then internally call our `DbUserDetailsService` to load the user by his username, authenticate him using the given password and returns the authenticated `Authentication` object. We will then return the UUID token if the authentication is success.
-
+We will use `UsernamePasswordAuthenticationToken` class to create an unauthenticated `Authentication` object with the *username* & *password* and authenticate it using `AuthenticationManager`. It will then internally call our `DbUserDetailsService` to load the user by the username, authenticate using the given password and returns the authenticated `Authentication` object. We will then return the UUID token only if the authentication is success.
 ```java
 @Autowired
 private AuthenticationManager authenticationManager;
@@ -50,7 +49,7 @@ public AuthenticationManager authenticationManager(AuthenticationConfiguration a
 }
 ```
 
-Now create an REST API to return the generated token from `AuthenticationService` as below:
+Now create a REST API to return the generated token from `AuthenticationService` as below:
 
 ```java
 @RestController  
@@ -69,7 +68,7 @@ public class AuthenticationController {
 }
 ```
 
-Finally we have to configure this API to be accessible for all. Let's create a constant for the API URL in `SecurityConstants`.
+Finally we have to configure the REST API to be accessible for all. Let's create a constant for the API URL in `SecurityConstants`.
 
 ```java
 public static final String API_AUTH_TOKEN = "/auth/token";
