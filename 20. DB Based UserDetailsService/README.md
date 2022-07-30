@@ -14,7 +14,7 @@ public class SecurityBean {
 }
 ```
 
-Update `DbUserDetailsService` to implement `UserDetailsService` interface which requires us to implement only one method `loadUserByUsername()`. And remove `loadAllUserDetails()` as we no longer require it.
+Update `DbUserDetailsService` by implementing `UserDetailsService` interface which requires us to implement its only one method `loadUserByUsername()`. And remove `loadAllUserDetails()` as we no longer require it.
 
 ```java
 @Override  
