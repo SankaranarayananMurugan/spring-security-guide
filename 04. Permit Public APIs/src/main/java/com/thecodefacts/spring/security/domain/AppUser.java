@@ -23,6 +23,7 @@ public class AppUser {
 
     private String username;
 
+    @JsonIgnore
     private String password;
 
     private String email;
