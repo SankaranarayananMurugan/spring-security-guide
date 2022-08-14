@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.thecodefacts.spring.security.enums.RoleEnum.INSTRUCTOR;
+import static com.thecodefacts.spring.security.enums.RoleEnum.STUDENT;
+
 @Service
 public class UserService {
     @Autowired
@@ -19,7 +22,15 @@ public class UserService {
     @Autowired
     private AppRoleRepository appRoleRepository;
 
-    public List<AppUser> listByRoleName(RoleEnum role) {
+    public List<AppUser> listStudents() {
+        return this.listByRoleName(STUDENT);
+    }
+
+    public List<AppUser> listInstructors() {
+        return this.listByRoleName(INSTRUCTOR);
+    }
+
+    private List<AppUser> listByRoleName(RoleEnum role) {
         AppRole appRole = appRoleRepository.findByName(role);
         return appRole.getUsers().stream()
                 .sorted(

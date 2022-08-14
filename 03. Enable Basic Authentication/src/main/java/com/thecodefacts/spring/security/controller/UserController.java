@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.thecodefacts.spring.security.enums.RoleEnum.INSTRUCTOR;
-import static com.thecodefacts.spring.security.enums.RoleEnum.STUDENT;
-
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/users")
@@ -24,14 +21,14 @@ public class UserController {
 
     @GetMapping("/students")
     public ResponseEntity<List<AppUser>> listStudents() {
-        List<AppUser> studentList = userService.listByRoleName(STUDENT);
+        List<AppUser> studentList = userService.listStudents();
         log.debug("{} students found", studentList.size());
         return ResponseEntity.ok(studentList);
     }
 
     @GetMapping("/instructors")
     public ResponseEntity<List<AppUser>> listInstructors() {
-        List<AppUser> instructorList = userService.listByRoleName(INSTRUCTOR);
+        List<AppUser> instructorList = userService.listInstructors();
         log.debug("{} instructors found", instructorList.size());
         return ResponseEntity.ok(instructorList);
     }
